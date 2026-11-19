@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic Hub | Class 9 to College Tuition & Study Notes</title>
+  <style>
+    :root {
+      --primary: #1d4ed8;
+      --primary-dark: #1e40af;
+      --accent: #0f766e;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0.9rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-accent:hover {
+      opacity: 0.92;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 3.5rem 1.25rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: var(--primary-dark);
+      font-weight: 600;
+      font-size: 0.82rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      line-height: 1.18;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .stat-box {
+      background: var(--bg);
+      padding: 0.85rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .stat-box strong {
+      display: block;
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+
+    .stat-box span {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* Sections */
+    section {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.75rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.75rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .section-header p {
+      color: var(--muted);
+    }
+
+    /* Courses */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .meta {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .card ul {
+      list-style: none;
+      margin-bottom: 1.25rem;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .card ul li {
+      padding: 0.25rem 0;
+    }
+
+    .card ul li::before {
+      content: "• ";
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* Notes Filter & Store */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.88rem;
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .price-tag {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.9rem;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    /* Enrollment Form */
+    .enroll-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.65rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .status-msg {
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+      display: none;
+      font-size: 0.92rem;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 100;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--card);
+      border-radius: var(--radius);
+      max-width: 500px;
+      width: 100%;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.25rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 820px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 2rem;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand">📘 ConceptMentor Tuition</a>
+      <nav class="nav-links">
+        <a href="#courses">Courses</a>
+        <a href="#notes">Notes Store</a>
+        <a href="#enroll">Enroll Now</a>
+      </nav>
+      <a href="#enroll" class="btn btn-primary">Book a Demo</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div>
+        <span class="badge">Class 9 • Class 10 • Class 11–12 • College</span>
+        <h1>Structured Tuition & Exam-Ready Notes for Serious Learners</h1>
+        <p>
+          Build strong fundamentals, practice exam-focused problems, and download clear,
+          concise study notes designed for high school and college students.
+        </p>
+        <div class="hero-actions">
+          <a href="#enroll" class="btn btn-primary">Student Enrollment</a>
+          <a href="#notes" class="btn btn-outline">Browse Study Notes</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Why Students Join</h3>
+        <p style="font-size: 0.92rem; color: var(--muted);">
+          Small-batch focus, regular tests, doubt-clearing sessions, and topic-wise PDF notes.
+        </p>
+        <div class="stat-grid">
+          <div class="stat-box">
+            <strong>9–College</strong>
+            <span>All Academic Levels</span>
+          </div>
+          <div class="stat-box">
+            <strong>PDF Notes</strong>
+            <span>Chapter Summaries</span>
+          </div>
+          <div class="stat-box">
+            <strong>Weekly</strong>
+            <span>Practice & Tests</span>
+          </div>
+          <div class="stat-box">
+            <strong>Direct</strong>
+            <span>Doubt Support</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses">
+      <div class="section-header">
+        <h2>Tuition Batches & Programs</h2>
+        <p>Flexible batches tailored to school boards, senior secondary, and college coursework.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div>
+            <div class="meta">Classes 9 & 10</div>
+            <h3>Foundation & Board Prep</h3>
+            <ul>
+              <li>Concept clarity from basics to exam level</li>
+              <li>Chapter-wise worksheets & past questions</li>
+              <li>Regular unit tests & progress tracking</li>
+            </ul>
+          </div>
+          <a href="#enroll" class="btn btn-outline">Enroll in Class 9–10</a>
+        </div>
+
+        <div class="card">
+          <div>
+            <div class="meta">Classes 11 & 12</div>
+            <h3>Senior Secondary Mastery</h3>
+            <ul>
+              <li>In-depth coverage of core syllabus topics</li>
+              <li>Problem-solving drills & numericals</li>
+              <li>Mock exams & revision notes included</li>
+            </ul>
+          </div>
+          <a href="#enroll" class="btn btn-outline">Enroll in Class 11–12</a>
+        </div>
+
+        <div class="card">
+          <div>
+            <div class="meta">Undergraduate / College</div>
+            <h3>College Subject Mentoring</h3>
+            <ul>
+              <li>Semester-focused lectures & problem sets</li>
+              <li>Assignment guidance & exam preparation</li>
+              <li>Concise reference notes & formula sheets</li>
+            </ul>
+          </div>
+          <a href="#enroll" class="btn btn-outline">Enroll for College</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notes Store Section -->
+    <section id="notes">
+      <div class="section-header">
+        <h2>Study Notes Store</h2>
+        <p>Select your level, preview the contents, and place an order in seconds.</p>
+      </div>
+
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="all">All Notes</button>
+        <button class="filter-btn" data-filter="class-9-10">Class 9–10</button>
+        <button class="filter-btn" data-filter="class-11-12">Class 11–12</button>
+        <button class="filter-btn" data-filter="college">College</button>
+      </div>
+
+      <div class="grid-3" id="notesGrid">
+        <!-- Populated via JavaScript -->
+      </div>
+    </section>
+
+    <!-- Student Enrollment Section -->
+    <section id="enroll">
+      <div class="section-header" style="text-align: center;">
+        <h2>Student Enrollment Form</h2>
+        <p>Fill out your details below to reserve a seat or request a trial class.</p>
+      </div>
+
+      <div class="enroll-box">
+        <form id="enrollForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="studentName">Student Full Name *</label>
+              <input type="text" id="studentName" required placeholder="e.g., Rohan Sharma" />
+            </div>
+
+            <div class="form-group">
+              <label for="phoneNumber">Phone / WhatsApp Number *</label>
+              <input type="tel" id="phoneNumber" required placeholder="e.g., 9876543210" />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="studentLevel">Class / Level *</label>
+              <select id="studentLevel" required>
+                <option value="">Select Level</option>
+                <option value="Class 9">Class 9</option>
+                <option value="Class 10">Class 10</option>
+                <option value="Class 11">Class 11</option>
+                <option value="Class 12">Class 12</option>
+                <option value="College / Undergraduate">College / Undergraduate</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="batchMode">Preferred Mode *</label>
+              <select id="batchMode" required>
+                <option value="Offline Batch">Offline Batch</option>
+                <option value="Online Live">Online Live</option>
+                <option value="One-on-One">One-on-One</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="subjects">Subjects / Topics Needed</label>
+            <input type="text" id="subjects" placeholder="e.g., Mathematics, Physics, Calculus, Statistics" />
+          </div>
+
+          <div class="form-group">
+            <label for="notesMessage">Additional Notes or Preferred Timing</label>
+            <textarea id="notesMessage" rows="3" placeholder="Any specific goals, exam dates, or timing preferences..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            Submit Enrollment Request
+          </button>
+
+          <div class="status-msg" id="enrollStatus"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Preview & Order Modal -->
+  <div class="modal-backdrop" id="noteModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">Note Title</h3>
+        <button class="close-btn" id="closeModal" aria-label="Close modal">&times;</button>
+      </div>
+      <p id="modalBody" style="color: var(--muted); margin-bottom: 1rem;"></p>
+      <div style="background: var(--bg); padding: 0.9rem; border-radius: 8px; margin-bottom: 1.1rem; font-size: 0.9rem;">
+        <strong>Payment Info:</strong> UPI ID — <span id="upiDisplay">ajoyshilbank99@oksbi</span><br />
+        After payment, share your payment screenshot on WhatsApp to receive the PDF immediately.
+      </div>
+      <div class="card-actions">
+        <a id="whatsappOrderLink" href="#" target="_blank" rel="noopener" class="btn btn-accent" style="flex: 1;">
+          Order via WhatsApp
+        </a>
+        <button type="button" class="btn btn-outline" id="closeModalBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; <span id="year"></span> ConceptMentor Tuition. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const TEACHER_WHATSAPP = "919089815441";
+    const UPI_ID = "ajoyshilbank99@oksbi";
+
+    const notesData = [
+      {
+        id: 1,
+        title: "Class 9–10 Core Concepts & Formula Pack",
+        level: "class-9-10",
+        levelLabel: "Class 9–10",
+        price: "₹199",
+        summary: "Clean chapter summaries, solved examples, and high-weightage practice questions.",
+        contents: "Includes key definitions, step-by-step solved problems, formula sheets, and self-test questions."
+      },
+      {
+        id: 2,
+        title: "Class 11–12 Complete Problem Bank",
+        level: "class-11-12",
+        levelLabel: "Class 11–12",
+        price: "₹299",
+        summary: "Structured notes with graded exercises from basic to exam-level difficulty.",
+        contents: "Includes concept maps, common mistakes to avoid, graded practice sets, and answer keys."
+      },
+      {
+        id: 3,
+        title: "College Semester Lecture & Revision Notes",
+        level: "college",
+        levelLabel: "College",
+        price: "₹399",
+        summary: "Concise undergraduate study notes, proofs/derivations, and exam revision sheets.",
+        contents: "Includes clear theory notes, worked examples, important theorems/concepts, and quick review checklists."
+      }
+    ];
+
+    const notesGrid = document.getElementById("notesGrid");
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const modal = document.getElementById("noteModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const upiDisplay = document.getElementById("upiDisplay");
+    const whatsappOrderLink = document.getElementById("whatsappOrderLink");
+
+    upiDisplay.textContent = UPI_ID;
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function renderNotes(filter = "all") {
+      const filtered = filter === "all"
+        ? notesData
+        : notesData.filter(item => item.level === filter);
+
+      notesGrid.innerHTML = filtered.map(note => `
+        <div class="card">
+          <div>
+            <div class="meta">${note.levelLabel}</div>
+            <h3>${note.title}</h3>
+            <p style="color: var(--muted); font-size: 0.93rem; margin-bottom: 1rem;">${note.summary}</p>
+          </div>
+          <div>
+            <div class="price-tag">${note.price}</div>
+            <div class="card-actions">
+              <button class="btn btn-outline" onclick="openNoteModal(${note.id})">Preview & Buy</button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function openNoteModal(id) {
+      const note = notesData.find(n => n.id === id);
+      if (!note) return;
+
+      modalTitle.textContent = `${note.title} (${note.price})`;
+      modalBody.textContent = note.contents;
+
+      const msg = encodeURIComponent(
+        `Hello! I would like to order the notes: "${note.title}" (${note.price}). UPI ID noted: ${UPI_ID}`
+      );
+      whatsappOrderLink.href = `https://wa.me/${TEACHER_WHATSAPP}?text=${msg}`;
+      modal.classList.add("open");
+    }
+
+    function closeNoteModal() {
+      modal.classList.remove("open");
+    }
+
+    document.getElementById("closeModal").addEventListener("click", closeNoteModal);
+    document.getElementById("closeModalBtn").addEventListener("click", closeNoteModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeNoteModal();
+    });
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderNotes(btn.dataset.filter);
+      });
+    });
+
+    // Enrollment form handling
+    const enrollForm = document.getElementById("enrollForm");
+    const enrollStatus = document.getElementById("enrollStatus");
+
+    enrollForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("studentName").value.trim();
+      const phone = document.getElementById("phoneNumber").value.trim();
+      const level = document.getElementById("studentLevel").value;
+      const mode = document.getElementById("batchMode").value;
+      const subjects = document.getElementById("subjects").value.trim() || "Not specified";
+      const extra = document.getElementById("notesMessage").value.trim() || "None";
+
+      const text = encodeURIComponent(
+        `New Student Enrollment:\n• Name: ${name}\n• Phone: ${phone}\n• Level: ${level}\n• Mode: ${mode}\n• Subjects: ${subjects}\n• Notes: ${extra}`
+      );
+
+      const waUrl = `https://wa.me/${TEACHER_WHATSAPP}?text=${text}`;
+
+      enrollStatus.style.display = "block";
+      enrollStatus.innerHTML = `
+        <strong>Enrollment details prepared for ${name} (${level}).</strong><br />
+        Click below to send your registration directly on WhatsApp:
+        <div style="margin-top: 0.6rem;">
+          <a href="${waUrl}" target="_blank" rel="noopener" class="btn btn-accent">Send on WhatsApp</a>
+        </div>
+      `;
+
+      enrollForm.reset();
+    });
+
+    renderNotes();
+  </script>
+</body>
+</html>
